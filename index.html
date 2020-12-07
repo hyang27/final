@@ -19,15 +19,16 @@
     }
     #bg_img{
       width: 40%;
-      opacity: 0;
+      opacity: 1;
     }
-    .content_div{
+    #content_div{
       width: 50%;
       margin: 50px auto;
       background-color: rgb(79,129,189);
-      height: 200px;
+      height: 250px;
       position: relative;
       border: 1px solid blue;
+      display: none;
     }
     #my_name{
       position: absolute;
@@ -73,18 +74,29 @@
       margin-top: 10px;
       padding-left: 20px;
     }
-    #next_btn{
+    #start_btn{
       display: block;
+      position: absolute;
+      width: 300px;
+      top: 440px;
+      left: 50%;
+      margin-left: -150px;
     }
   </style>
 </head>
 <body>
 <div class="box">
-  <div class="bg_div">
-    <img id="bg_img" src="./image/begin.jpg" alt="">
-    <img id="people" src="./character/jelly.png" alt="">
+  <div style="text-align: center;margin-top: 20px">
+    <img src="./image/title_img.png" alt="" style="height: 50px">
   </div>
-  <div class="content_div">
+
+  <div class="bg_div">
+    <img id="bg_img" src="./image/kaishi_img.jpg" alt="">
+    <img id="people" src="./character/jelly.png" alt="">
+
+    <img id="start_btn" class="my_btn" src="./image/start.png" alt="">
+  </div>
+  <div id="content_div">
     <span id="my_name">Hansen</span>
     <div id="my_message">My name is Hansen and This is the story of me just becoming a college student</div>
     <div id="selece1_div" class="select_div">
@@ -101,25 +113,55 @@
       <div id="libraryB_B">B.Yeah, I like Márquez, of course.</div>
       <div id="libraryB_C">C.I know it’s Stephen Edwin King’s novel, right?</div>
     </div>
+    <div id="classroom_select" class="select_div">
+      <div id="classroom_A">A. Yeah</div>
+      <div id="classroom_B">B. No, I can stay in the class and Can you be my girlfriend?</div>
+    </div>
+    <div id="bar_select" class="select_div">
+      <div id="bar_A">A. Run away</div>
+      <div id="bar_B">B. Wait for her to vomit</div>
+    </div>
+    <div id="barB_select" class="select_div">
+      <div id="barB_A">A.I’m angry and give me money to clean my shirts now.</div>
+      <div id="barB_B">B.I came to the bar to find a girlfriend</div>
+    </div>
     <img id="next_btn" class="my_btn" src="./image/next.png" alt="">
-    <img id="back_btn" class="my_btn" src="./image/begin.png" alt="">
+    <img id="back_btn" class="my_btn" src="image/back.png" alt="">
     <img id="library_next" class="my_btn" src="./image/next.png" alt="">
+    <img id="classroom_next" class="my_btn" src="./image/next.png" alt="">
+    <img id="bar_next" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_classroomA" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_classroomB" class="my_btn" src="./image/next.png" alt="">
     <img id="next_libraryA" class="my_btn" src="./image/next.png" alt="">
     <img id="next_libraryB" class="my_btn" src="./image/next.png" alt="">
     <img id="next_libraryBA" class="my_btn" src="./image/next.png" alt="">
     <img id="next_libraryBB" class="my_btn" src="./image/next.png" alt="">
     <img id="next_libraryBC" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_barA" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_barB" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_barBA" class="my_btn" src="./image/next.png" alt="">
+    <img id="next_barBB" class="my_btn" src="./image/next.png" alt="">
   </div>
 </div>
 </body>
 <script>
   var next_btn = document.getElementById("next_btn")
+  var start_btn = document.getElementById("start_btn")
+  var back_btn = document.getElementById("back_btn")
   var library_next = document.getElementById("library_next")
+  var classroom_next = document.getElementById("classroom_next")
+  var bar_next = document.getElementById("bar_next")
+  var next_classroomA = document.getElementById("next_classroomA")
+  var next_classroomB = document.getElementById("next_classroomB")
   var next_libraryA = document.getElementById("next_libraryA")
   var next_libraryB = document.getElementById("next_libraryB")
   var next_libraryBA = document.getElementById("next_libraryBA")
   var next_libraryBB = document.getElementById("next_libraryBB")
   var next_libraryBC = document.getElementById("next_libraryBC")
+  var next_barA = document.getElementById("next_barA")
+  var next_barB = document.getElementById("next_barB")
+  var next_barBA = document.getElementById("next_barBA")
+  var next_barBB = document.getElementById("next_barBB")
   var bg_img = document.getElementById("bg_img")
   var people = document.getElementById("people")
   var my_message = document.getElementById("my_message")
@@ -131,6 +173,22 @@
   var libraryBA_step = 0
   var libraryBB_step = 0
   var libraryBC_step = 0
+  var classroom_step = 0
+  var classroomA_step = 0
+  var classroomB_step = 0
+  var bar_step = 0
+  var barA_step = 0
+  var barB_step = 0
+  var barBA_step = 0
+  var barBB_step = 0
+
+  start_btn.onclick = function() {
+    next_btn.src = './image/next.png'
+    start_btn.style.display = 'none'
+    next_btn.style.display = 'block'
+    document.getElementById('content_div').style.display = 'block'
+
+  }
   // 下一步
   next_btn.onclick = function() {
     my_step+=1
@@ -246,8 +304,8 @@
       my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
       my_name.innerText = 'Jelly'
       people.src = ""
-      bg_img.src = "./image/beer.jpg"
     } else if(libraryA_step ===5){
+      bg_img.src = "./image/beer.jpg"
       my_message.innerText = '…jelly.'
       my_name.innerText = 'Hansen'
     } else if(libraryA_step ===6){
@@ -269,7 +327,7 @@
       my_name.innerText = 'Jelly'
     } else if(libraryA_step ===11){
       bg_img.src = "./image/end4.jpg"
-      document.getElementById("back_btn").style.display = 'block'
+      back_btn.style.display = 'block'
       next_libraryA.style.display = 'none'
     }
   }
@@ -329,8 +387,8 @@
       my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
       my_name.innerText = 'Jelly'
       people.src = ""
-      bg_img.src = "./image/beer.jpg"
     } else if(libraryBA_step ===5){
+      bg_img.src = "./image/beer.jpg"
       my_message.innerText = '…jelly.'
       my_name.innerText = 'Hansen'
     } else if(libraryBA_step ===6){
@@ -352,8 +410,8 @@
       my_name.innerText = 'Jelly'
     } else if(libraryBA_step ===11){
       bg_img.src = "./image/end4.jpg"
-      document.getElementById("back_btn").style.display = 'block'
-      next_libraryA.style.display = 'none'
+      back_btn.style.display = 'block'
+      next_libraryBA.style.display = 'none'
     }
     libraryBA_step+=1
   }
@@ -382,6 +440,8 @@
       my_name.innerText = 'Hansen'
       bg_img.src = "./image/end3.jpg"
       people.style.opacity = '0'
+      back_btn.style.display = 'block'
+      next_libraryBB.style.display = 'none'
     }
     libraryBB_step+=1
   }
@@ -417,8 +477,8 @@
       my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
       my_name.innerText = 'Jelly'
       people.src = ""
-      bg_img.src = "./image/beer.jpg"
     } else if(libraryBC_step ===5){
+      bg_img.src = "./image/beer.jpg"
       my_message.innerText = '…jelly.'
       my_name.innerText = 'Hansen'
     } else if(libraryBC_step ===6){
@@ -440,14 +500,372 @@
       my_name.innerText = 'Jelly'
     } else if(libraryBC_step ===11){
       bg_img.src = "./image/end4.jpg"
-      document.getElementById("back_btn").style.display = 'block'
-      next_libraryA.style.display = 'none'
+      back_btn.style.display = 'block'
+      next_libraryBC.style.display = 'none'
     }
     libraryBC_step+=1
   }
 
 
+  // 选择classroom
+  document.getElementById("selece_classroom").onclick = function () {
+    next_btn.style.display = 'none'
+    classroom_next.style.display = 'block'
+    if(my_step === 10) {
+      my_message.innerText = 'Hey, Are you new here? I’ve never seen you before,'
+      bg_img.src = "./image/classroom.jpg"
+      people.style.opacity = '1'
+      people.src = "./character/y1.png"
+      my_name.innerText = 'Yuki'
+      document.getElementById("selece1_div").style.display = 'none'
+    }
+  }
 
+  // 选择classroom完下一步
+  classroom_next.onclick = function() {
+    classroom_step+=1
+    if(classroom_step === 1) {
+      my_message.innerText = 'Uh, I missed several classes to play video games..'
+      my_name.innerText = 'Hansen'
+    } else if(classroom_step === 2){
+      my_message.innerText = 'Wow, You’re interesting, don’t worry the class is boring and I think maybe you didn’t  miss to many classes. My name is Yuki and what’s your name?'
+      my_name.innerText = 'Yuki'
+    } else if(classroom_step === 3){
+      my_message.innerText = 'Hansen..'
+      my_name.innerText = 'Hansen'
+    } else if(classroom_step ===4){
+      my_message.innerText = '(3hours late…..)'
+      my_name.innerText = ''
+    } else if(classroom_step ===5){
+      my_message.innerText = 'ZZZZZZZZZZZZZZZZZ'
+      my_name.innerText = 'Hansen'
+      people.style.opacity = '0'
+    } else if(classroom_step ===6){
+      my_message.innerText = 'Hey, Hansen, wake up, the class is over. '
+      my_name.innerText = 'Yuki'
+      people.style.opacity = '1'
+      people.src = "./character/Y2.png"
+    } else if(classroom_step ===7){
+      my_message.innerText = 'Uhhh, sorry.'
+      my_name.innerText = 'Hansen'
+    } else if(classroom_step ===8){
+      my_message.innerText = 'It’s fine,I know our teacher is serious and a lot people don’t want to take his class, but I like the class, Am i weird?'
+      my_name.innerText = 'Yuki'
+    } else if(classroom_step ===9){
+      my_message.innerText = ''
+      document.getElementById("classroom_select").style.display = 'block'
+      my_name.innerText = 'Hansen'
+      // 选择分支
+    }
+  }
+
+  // 选择classroom-A
+  document.getElementById("classroom_A").onclick = function () {
+    classroom_next.style.display = 'none'
+    next_classroomA.style.display = 'block'
+    my_message.innerText = 'Haha, It’s fine, You can not come to the class in the future, Teacher does not pay attention to attendance.'
+    people.src = "./character/y1.png"
+    my_name.innerText = 'Yuki'
+    document.getElementById("classroom_select").style.display = 'none'
+  }
+
+  // 选择 library-A，下一步
+  next_classroomA.onclick = function() {
+    if(classroomA_step === 0) {
+      my_message.innerText = 'Thanks.'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step === 1) {
+      my_message.innerText = '(I just leave the classroom and Nothing happened.)'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step === 2){
+      my_message.innerText = 'Wow, So you haven\'t found a girlfriend in the past two years?'
+      my_name.innerText = 'Jelly'
+      people.src = "./character/jelly.png"
+      bg_img.src = "./image/bedroom.jpg"
+    } else if(classroomA_step === 3){
+      my_message.innerText = 'Yeah, I admit that I don\'t have the talent to communicate with girl.'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step ===4){
+      my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
+      my_name.innerText = 'Jelly'
+      people.src = ""
+    } else if(classroomA_step ===5){
+      bg_img.src = "./image/beer.jpg"
+      my_message.innerText = '…jelly.'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step ===6){
+      my_message.innerText = 'What’up ,my friend?'
+      my_name.innerText = 'Jelly'
+    } else if(classroomA_step ===7){
+      my_message.innerText = 'Is it embarrassing to not find a girlfriend?'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step ===8){
+      my_message.innerText = 'Well, I think everyone has their own lifestyle.\n' +
+        'And to be honest, \n' +
+        'I don\'t think you have no charm.'
+      my_name.innerText = 'Jelly'
+    } else if(classroomA_step ===9){
+      my_message.innerText = 'Thank you..'
+      my_name.innerText = 'Hansen'
+    } else if(classroomA_step ===10){
+      my_message.innerText = 'You’re welcome.'
+      my_name.innerText = 'Jelly'
+    } else if(classroomA_step ===11){
+      bg_img.src = "./image/end4.jpg"
+      back_btn.style.display = 'block'
+      next_libraryA.style.display = 'none'
+    }
+    classroomA_step+=1
+  }
+
+  // 选择classroom-B
+  document.getElementById("classroom_B").onclick = function () {
+    classroom_next.style.display = 'none'
+    next_classroomB.style.display = 'block'
+    my_message.innerText = 'Ok， I\'m so happy'
+    people.src = "./character/Y3.png"
+    my_name.innerText = 'Yuki'
+    document.getElementById("classroom_select").style.display = 'none'
+  }
+
+  // 选择 classroom-B，下一步
+  next_classroomB.onclick = function() {
+    if(classroomB_step === 0) {
+      my_message.innerText = '(Just like that, I got a girlfriend)'
+      my_name.innerText = 'Hansen'
+      people.style.opacity = '0'
+      bg_img.src = "./image/end1.jpg"
+      back_btn.style.display = 'block'
+      next_classroomB.style.display = 'none'
+    }
+    classroomB_step+=1
+  }
+
+  // 选择bar
+  document.getElementById("selece_bar").onclick = function () {
+    next_btn.style.display = 'none'
+    bar_next.style.display = 'block'
+    if(my_step === 10) {
+      my_message.innerText = 'Now I came to the bar near the school'
+      bg_img.src = "./image/bar.jpg"
+      people.src = ''
+      my_name.innerText = 'Hansen'
+      document.getElementById("selece1_div").style.display = 'none'
+    }
+  }
+
+  // 选择bar完下一步
+  bar_next.onclick = function() {
+    bar_step+=1
+    if(bar_step === 1) {
+      my_message.innerText = 'WOW, there are a lot of people come in and out.'
+      my_name.innerText = 'Hansen'
+    } else if(bar_step === 2){
+      my_message.innerText = '(Someone leaped at me and vomited on me suddenly!!!)'
+      my_name.innerText = 'Hansen'
+    } else if(bar_step === 3){
+      my_message.innerText = 'Damn, Why am i so unlucky?'
+      my_name.innerText = 'Hansen'
+    } else if(bar_step ===4){
+      my_message.innerText = ''
+      document.getElementById("bar_select").style.display = 'block'
+      my_name.innerText = 'Hansen'
+    }
+  }
+
+  // 选择bar-A
+  document.getElementById("bar_A").onclick = function () {
+    bar_next.style.display = 'none'
+    next_barA.style.display = 'block'
+    my_message.innerText = '(I just leave the bar and Never been there again)'
+    my_name.innerText = 'Hansen'
+    document.getElementById("bar_select").style.display = 'none'
+  }
+
+  // 选择 bar-A，下一步
+  next_barA.onclick = function() {
+    barA_step+=1
+    if(barA_step === 1) {
+      my_message.innerText = 'Two years later'
+      people.src = ""
+      my_name.innerText = ''
+    } else if(barA_step === 2){
+      my_message.innerText = 'Wow, So you haven\'t found a girlfriend in the past two years?'
+      my_name.innerText = 'Jelly'
+      people.src = "./character/jelly.png"
+      bg_img.src = "./image/bedroom.jpg"
+    } else if(barA_step === 3){
+      my_message.innerText = 'Yeah, I admit that I don\'t have the talent to communicate with girl.'
+      my_name.innerText = 'Hansen'
+    } else if(barA_step ===4){
+      my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
+      my_name.innerText = 'Jelly'
+      people.src = ""
+    } else if(barA_step ===5){
+      bg_img.src = "./image/beer.jpg"
+      my_message.innerText = '…jelly.'
+      my_name.innerText = 'Hansen'
+    } else if(barA_step ===6){
+      my_message.innerText = 'What’up ,my friend?'
+      my_name.innerText = 'Jelly'
+    } else if(barA_step ===7){
+      my_message.innerText = 'Is it embarrassing to not find a girlfriend?'
+      my_name.innerText = 'Hansen'
+    } else if(barA_step ===8){
+      my_message.innerText = 'Well, I think everyone has their own lifestyle.\n' +
+              'And to be honest, \n' +
+              'I don\'t think you have no charm.'
+      my_name.innerText = 'Jelly'
+    } else if(barA_step ===9){
+      my_message.innerText = 'Thank you..'
+      my_name.innerText = 'Hansen'
+    } else if(barA_step ===10){
+      my_message.innerText = 'You’re welcome.'
+      my_name.innerText = 'Jelly'
+    } else if(barA_step ===11){
+      bg_img.src = "./image/end4.jpg"
+      back_btn.style.display = 'block'
+      next_barA.style.display = 'none'
+    }
+  }
+
+  // 选择bar-B
+  document.getElementById("bar_B").onclick = function () {
+    bar_next.style.display = 'none'
+    next_barB.style.display = 'block'
+    my_message.innerText = '(one hour later..)'
+    people.src = "./character/g1.png"
+    my_name.innerText = ''
+    document.getElementById("bar_select").style.display = 'none'
+  }
+
+  // 选择 bar-B，下一步
+  next_barB.onclick = function() {
+    barB_step+=1
+    if(barB_step === 1) {
+      my_message.innerText = 'So you came to drink alone?'
+      my_name.innerText = 'Hansen'
+    } else if(barB_step === 2){
+      my_message.innerText = 'Yeah, I just broke up with my boyfriend, so I came to the bar to have fun. I’m sorry for your shirts, I will pay for the cleaning.'
+      my_name.innerText = 'Green'
+    } else if(barB_step === 3){
+      my_message.innerText = 'Well, This shirts is a bargain, I can just throw it away'
+      my_name.innerText = 'Hansen'
+    } else if(barB_step ===4){
+      my_message.innerText = 'I can see it. Fortunately it is not expensive, otherwise I will lose a huge sum of money after the breakup.'
+      my_name.innerText = 'Green'
+    } else if(barB_step ===5){
+      my_message.innerText = 'No offense, but I don’t think you are the kind of person who comes to a bar. You’re … kind of nerdy..'
+      my_name.innerText = 'Green'
+    } else if(barB_step ===6){
+      my_message.innerText = ''
+      my_name.innerText = 'Hansen'
+    //  选择分支
+      document.getElementById("barB_select").style.display = 'block'
+    }
+  }
+
+  // 选择barB-A
+  document.getElementById("barB_A").onclick = function () {
+    next_barB.style.display = 'none'
+    next_barBA.style.display = 'block'
+    my_message.innerText = '(I just leave the bar and Never been there again )'
+    my_name.innerText = 'Green'
+    document.getElementById("barB_select").style.display = 'none'
+  }
+
+  // 选择barB-A，下一步
+  next_barBA.onclick = function() {
+    barBA_step+=1
+    console.log(barBA_step)
+    if(barBA_step === 1) {
+      my_message.innerText = 'Two years later'
+      people.src = ""
+      my_name.innerText = ''
+    } else if(barBA_step === 2){
+      my_message.innerText = 'Wow, So you haven\'t found a girlfriend in the past two years?'
+      my_name.innerText = 'Jelly'
+      people.src = "./character/jelly.png"
+      bg_img.src = "./image/bedroom.jpg"
+    } else if(barBA_step === 3){
+      my_message.innerText = 'Yeah, I admit that I don\'t have the talent to communicate with girl.'
+      my_name.innerText = 'Hansen'
+    } else if(barBA_step ===4){
+      my_message.innerText = 'Hahaha, It’s so sad, Shall we have a drink tonight?'
+      my_name.innerText = 'Jelly'
+      people.src = ""
+    } else if(barBA_step ===5){
+      bg_img.src = "./image/beer.jpg"
+      my_message.innerText = '…jelly.'
+      my_name.innerText = 'Hansen'
+    } else if(barBA_step ===6){
+      my_message.innerText = 'What’up ,my friend?'
+      my_name.innerText = 'Jelly'
+    } else if(barBA_step ===7){
+      my_message.innerText = 'Is it embarrassing to not find a girlfriend?'
+      my_name.innerText = 'Hansen'
+    } else if(barBA_step ===8){
+      my_message.innerText = 'Well, I think everyone has their own lifestyle.\n' +
+              'And to be honest, \n' +
+              'I don\'t think you have no charm.'
+      my_name.innerText = 'Jelly'
+    } else if(barBA_step ===9){
+      my_message.innerText = 'Thank you..'
+      my_name.innerText = 'Hansen'
+    } else if(barBA_step ===10){
+      my_message.innerText = 'You’re welcome.'
+      my_name.innerText = 'Jelly'
+    } else if(barBA_step ===11){
+      bg_img.src = "./image/end4.jpg"
+
+      next_barBA.style.display = 'none'
+      back_btn.style.display = 'block'
+    }
+  }
+
+  // 选择barB-B
+  document.getElementById("barB_B").onclick = function () {
+    next_barB.style.display = 'none'
+    next_barBB.style.display = 'block'
+    my_message.innerText = '……'
+    my_name.innerText = 'Green'
+    document.getElementById("barB_select").style.display = 'none'
+  }
+
+  // 选择barB-B，下一步
+  next_barBB.onclick = function() {
+    barBB_step+=1
+    if(barBB_step === 1) {
+      my_message.innerText = '……'
+      my_name.innerText = 'Hansen'
+    } else if(barBB_step === 2){
+      my_message.innerText = 'You are very funny, so did you find your favorite girl?'
+      my_name.innerText = 'Green'
+      people.src = "./character/G2.png"
+    } else if(barBB_step === 3){
+      my_message.innerText = 'No, \n' +
+              'I don\'t think I can go to the bar in this shirts.'
+      my_name.innerText = 'Hansen'
+    } else if(barBB_step ===4){
+      my_message.innerText = 'I apologize, it’s my fault. Don’t worry maybe I can teach you something, In terms of emotion.'
+      my_name.innerText = 'Green'
+    } else if(barBB_step ===5){
+      people.src = "./character/g3.png"
+      my_message.innerText = 'It’s still a long time tonight, we can go elsewhere for a drink.'
+      my_name.innerText = 'Green'
+    } else if(barBB_step ===6){
+      my_message.innerText = '(Just like that, I got a girlfriend)'
+      my_name.innerText = 'Hansen'
+      people.style.opacity = '0'
+      bg_img.src = "./image/end2.jpg"
+      back_btn.style.display = 'block'
+      next_barBB.style.display = 'none'
+    }
+  }
+
+  back_btn.onclick = function () {
+    location.replace(location.href);
+  }
 
 </script>
 </html>
