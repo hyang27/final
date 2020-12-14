@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hansen Adventure</title>
   <style>
+
+    
+
     body{
       margin: 0;
       padding: 0;
@@ -11,6 +14,7 @@
     }
     .box{
       width: 100%;
+      position: relative;
     }
     .bg_div{
       width: 100%;
@@ -25,7 +29,6 @@
       width: 50%;
       margin: 50px auto;
       background-color: rgb(79,129,189);
-      height: 250px;
       position: relative;
       border: 1px solid blue;
       display: none;
@@ -53,7 +56,7 @@
     .my_btn{
       position: absolute;
       right: -50px;
-      bottom: -103px;
+      top: -103px;
       width: 200px;
       cursor: pointer;
       display: none;
@@ -82,10 +85,19 @@
       left: 50%;
       margin-left: -150px;
     }
+    .logo_img{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 999;
+      width: 100px;
+    }
   </style>
 </head>
 <body>
+
 <div class="box">
+  <img src="./image/add_new.jpg" alt="" class="logo_img">
   <div style="text-align: center;margin-top: 20px">
     <img src="./image/title_img.png" alt="" style="height: 50px">
   </div>
@@ -96,9 +108,11 @@
 
     <img id="start_btn" class="my_btn" src="./image/start.png" alt="">
   </div>
+  <img src="./image/1.gif" width="400" height="200" style=" position:absolute; top:50px;"/>
+  <img src="./image/2.gif" width="400" height="200" style=" position:absolute; top:500px;"/>
   <div id="content_div">
     <span id="my_name">Hansen</span>
-    <div id="my_message">My name is Hansen and This is the story of me just becoming a college student</div>
+    <div id="my_message">My name is Hansen and This is the story of me just becoming a college student.</div>
     <div id="selece1_div" class="select_div">
       <div id="selece_library">A.library</div>
       <div id="selece_classroom">B.classroom</div>
@@ -114,7 +128,7 @@
       <div id="libraryB_C">C.I know it’s Stephen Edwin King’s novel, right?</div>
     </div>
     <div id="classroom_select" class="select_div">
-      <div id="classroom_A">A. Yeah</div>
+      <div id="classroom_A">A. Yeah.</div>
       <div id="classroom_B">B. No, I can stay in the class and Can you be my girlfriend?</div>
     </div>
     <div id="bar_select" class="select_div">
@@ -123,7 +137,7 @@
     </div>
     <div id="barB_select" class="select_div">
       <div id="barB_A">A.I’m angry and give me money to clean my shirts now.</div>
-      <div id="barB_B">B.I came to the bar to find a girlfriend</div>
+      <div id="barB_B">B.I came to the bar to find a girlfriend.</div>
     </div>
     <img id="next_btn" class="my_btn" src="./image/next.png" alt="">
     <img id="back_btn" class="my_btn" src="image/back.png" alt="">
@@ -141,6 +155,9 @@
     <img id="next_barB" class="my_btn" src="./image/next.png" alt="">
     <img id="next_barBA" class="my_btn" src="./image/next.png" alt="">
     <img id="next_barBB" class="my_btn" src="./image/next.png" alt="">
+
+    
+  </div style="margin-top:1000px"></div>
   </div>
 </div>
 </body>
@@ -185,6 +202,7 @@
   start_btn.onclick = function() {
     next_btn.src = './image/next.png'
     start_btn.style.display = 'none'
+    bg_img.src = "./image/begin.jpg"
     next_btn.style.display = 'block'
     document.getElementById('content_div').style.display = 'block'
 
@@ -254,7 +272,7 @@
   library_next.onclick = function() {
     library_step+=1
     if(library_step === 1) {
-      my_message.innerText = ' Is this your first time here? The front is the staff area'
+      my_message.innerText = ' Is this your first time here? The front is the staff area.'
       people.src = "./character/h1.png"
       my_name.innerText = 'Helena'
       people.style.opacity = '1'
@@ -262,7 +280,7 @@
       my_message.innerText = ' Oh,sorry.'
       my_name.innerText = 'Hansen'
     } else if(library_step === 3){
-      my_message.innerText = 'Keep quiet, please.I am the administrator here'
+      my_message.innerText = 'Keep quiet, please.I am the administrator here.'
       my_name.innerText = 'Helena'
     } else if(library_step ===4){
       document.getElementById("library_select").style.display = 'block'
@@ -274,7 +292,7 @@
   document.getElementById("library_A").onclick = function () {
     library_next.style.display = 'none'
     next_libraryA.style.display = 'block'
-    my_message.innerText = '(I just leave the library and Nothing happened.)'
+    my_message.innerText = '(I just leave the library and Nothing happen.)'
     bg_img.src = "./image/library.jpg"
     my_name.innerText = 'Hansen'
     document.getElementById("library_select").style.display = 'none'
@@ -289,7 +307,7 @@
       bg_img.style.opacity = 1
     }
     if(libraryA_step === 1) {
-      my_message.innerText = 'Two years later'
+      my_message.innerText = 'Two years later.'
       people.src = ""
       my_name.innerText = ''
     } else if(libraryA_step === 2){
